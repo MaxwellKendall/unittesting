@@ -1,7 +1,7 @@
 // https://www.chaijs.com/api/bdd/
 import { assert, expect, should } from 'chai';
 
-import { add } from '../src/app.js';
+import { add, addArray } from '../src/app.js';
 
 describe('add fn', () => {
     it('should add 1 + 2', () => {
@@ -38,3 +38,17 @@ describe('add fn with hooks', () => {
         // this test will not be run
       });
 });
+
+describe('addArr with dnyamic tests', () => {
+    const tests = [
+        {args: [1, 2], expected: 3},
+        {args: [1, 2, 3], expected: 6},
+        {args: [1, 2, 3, 4], expected: 10}
+      ];
+    tests.forEach(({ args, expected }) => {
+        it(`correctly adds ${args.join('+')}`, () => {
+            const result = addArray(args);
+            expect(result).to.equal(expected);
+        })
+    })
+})
