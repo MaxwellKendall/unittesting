@@ -13,3 +13,28 @@ describe('add fn', () => {
     });
 })
 
+describe('add fn with hooks', () => {
+    let result = 0;
+    before(function () {
+        // runs once before the first test in this block
+        console.log('before', result)
+      });
+      after(function () {
+        // runs once after the last test in this block
+        console.log('after', result)
+      });
+      afterEach(function () {
+        // runs after each test in this block
+        console.log('after each', result);
+        result = null;
+      });
+    
+    it('should add 1 + 2', () => {
+        result = add(1, 2);
+        expect(result).to.equal(3);        
+    });
+
+    it.skip('should return -1 unless present', function () {
+        // this test will not be run
+      });
+});
